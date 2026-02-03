@@ -7,7 +7,9 @@ This repository is used to upload code examples for **Object-Oriented Design & P
 # Clone the repo (first time):
 git clone https://github.com/N33MO/CS3354_255.git
 cd https://github.com/N33MO/CS3354_255.git
-# to get latest updates:
+# to get latest updates without merging:
+git fetch
+# to get latest updates and merge remote changes:
 git pull
 ```
 
