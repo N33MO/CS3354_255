@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
    A program to demonstrate throwing an exception.
 */
-public class ThrowingExceptions
+public class ThrowingExceptions2
 {
    public static void main(String[] args)
    {
@@ -30,10 +30,22 @@ public class ThrowingExceptions
          }
          else if (command.equals("W"))
          {
-            double amount = in.nextDouble();
-            if (amount > balance)               
-            {
-               throw new IllegalArgumentException("Amount exceeds balance");   //unchecked exception
+            double amount = 0;
+            boolean validInput = false;
+            while (!validInput) {
+               try {
+                  System.out.print("Enter amount to withdraw: ");
+                  amount = in.nextDouble();
+                  if (amount > balance) {
+                     throw new IllegalArgumentException("Amount exceeds balance");   // unchecked exception
+                  }
+                  validInput = true;
+               } catch (IllegalArgumentException e) {
+                  System.out.println("Error: " + e.getMessage());
+               } catch (Exception e) {
+                  System.out.println("Invalid input. Please enter a valid amount.");
+                  in.next(); // clear the invalid input
+               }
             }
             balance = balance - amount;
          }

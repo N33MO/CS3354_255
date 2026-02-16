@@ -19,6 +19,22 @@ package Module1.ExceptionsExamples.RuntimeException;
 
 public class ArithmeticExceptionExample {
     public static void main(String[] args) {
-        int x = 10 / 0;
+        int numerator = 10;
+        int denominator = 0;
+        int result = divide(numerator, denominator);
+        System.out.println("Integer Division Result: " + result);
+
+        double numF = 10.0;
+        double denF = 0.0;
+        double resF = divide(numF, denF);
+        System.out.println("Floating-point Division Result: " + resF);
+    }
+
+    public static int divide(int numerator, int denominator) {
+        return numerator / denominator;
+    }
+
+    public static double divide(double numerator, double denominator) {
+        return numerator / denominator;
     }
 }

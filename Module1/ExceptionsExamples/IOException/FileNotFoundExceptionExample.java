@@ -18,10 +18,13 @@
 package Module1.ExceptionsExamples.IOException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class FileNotFoundExceptionExample {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner in = new Scanner(new File("NonExistFile.demo"));
+        // process the file
+        in.close();
     }
 }
