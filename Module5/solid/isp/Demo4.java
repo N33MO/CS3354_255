@@ -7,6 +7,19 @@ public class Demo4 {
 /**
  * The interface below is too broad. Given the design requirements, how 
  * would you split it?
+ * 
+ * 1. A PodcastPlayer needs to be added — it plays and records audio, 
+ * but cannot stream online or convert formats.
+ * 
+ * 2. A StreamingPlayer needs to play and stream online only — no 
+ * recording or format conversion.
+ * 
+ * 3. A component should be able to depend on only the capability it 
+ * needs — for example, a RecordingService should not be aware that 
+ * players can also stream.
+ * 
+ * 4. Adding a new capability (e.g., subtitle support) should not force 
+ * all existing player classes to be updated.
  */
 
 // BEFORE

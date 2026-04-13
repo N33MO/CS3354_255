@@ -4,6 +4,22 @@ public class Demo4 {
     
 }
 
+/**
+ * The class below violates SRP. Given the design requirements, how 
+ * would you refactor it?
+ * 
+ * 1. The GPA calculation formula will change — the school is adopting a
+ * weighted grading scale next semester.
+ * 
+ * 2. The school is migrating from a local MySQL database to a cloud 
+ * storage solution.
+ * 
+ * 3. The transcript layout will be redesigned by the registrar's 
+ * office.
+ * 
+ * 4. The notification channel may switch from email to SMS in the 
+ * future.
+ */
 // BEFORE
 class StudentRecord {
 

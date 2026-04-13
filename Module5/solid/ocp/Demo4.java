@@ -4,6 +4,23 @@ public class Demo4 {
     
 }
 
+/**
+ * The class below violates OCP. Given the design requirements, how 
+ * would you refactor it?
+ * 
+ * 1. A new "student" discount tier at 15% will be introduced next 
+ * month.
+ * 
+ * 2. The VIP discount rate may be adjusted each quarter based on 
+ * business decisions.
+ * 
+ * 3. Each discount type may eventually require its own eligibility 
+ * validation logic.
+ * 
+ * 4. The marketing team plans to A/B test different discount strategies
+ * at runtime.
+ */
+
 // BEFORE
 class DiscountCalculator {
 
