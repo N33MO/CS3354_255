@@ -1,57 +1,41 @@
 # Module 6
 
-This folder contains simple Java examples for learning JUnit tests:
-
-- `AssertMethods` - examples of common JUnit assertion methods
-- `MyClass` - a small class with basic unit tests
-
-## How to Open the Examples
-
-Open `Module6` directly as the project root in VS Code.
-
-For proper package resolution, do not open the entire `CS3354_255_DEMO` directory as the project root when working with these examples. The package declarations in this folder are defined relative to `Module6`.
-
-For example:
-
-- `AssertMethods/HelloWorldTest.java` uses `package AssertMethods;`
-- `MyClass/MyClassTest.java` uses `package MyClass;`
-
-If you open the parent `CS3354_255_DEMO` directory instead, VS Code may treat the source root differently and the JUnit test icons may not appear correctly.
-
-## JUnit Setup
-
-This folder uses the standalone JUnit jar in:
+This module now follows a more production-like Java project layout:
 
 ```text
-lib/junit-platform-console-standalone-6.0.3.jar
+Module6/
+├── lib/
+├── src/
+│   ├── main/java/
+│   │   └── module6/...
+│   └── test/java/
+│       └── module6/...
+└── .vscode/settings.json
 ```
 
-No Maven or Gradle setup is required for these examples.
+## Why This Structure Is Closer to Industry
 
-To make VS Code recognize the JUnit jar and show test run icons, add these settings to your VS Code User Settings JSON:
+- `src/main/java` contains production code
+- `src/test/java` contains test code
+- packages use short, lowercase names
+- test classes mirror the package path of the code they verify
 
-```json
-{
-  "java.project.sourcePaths": [
-    "."
-  ],
-  "java.project.outputPath": "bin",
-  "java.project.referencedLibraries": [
-    "lib/**/*.jar"
-  ],
-  "editor.codeLens": true,
-  "editor.glyphMargin": true,
-  "testing.gutterEnabled": true
-}
-```
+This is the standard layout used by most Maven and Gradle Java projects, even though this demo still uses a standalone JUnit jar for simplicity.
 
-Open User Settings JSON from the Command Palette:
+## Package Layout
 
-```text
-Preferences: Open User Settings (JSON)
-```
+- `module6.assertions` - assertion examples
+- `module6.myclass` - basic class testing example
+- `module6.math` - parameterized test example
+- `module6.account` - test lifecycle and setup examples
 
-After opening `Module6`, if VS Code does not show the test run icons, run:
+## VS Code Setup
+
+Open `Module6` as the project root in VS Code.
+
+The committed `.vscode/settings.json` file points VS Code at the new source folders and the bundled JUnit jar.
+
+If test icons do not appear after the refactor, run:
 
 ```text
 Java: Clean Java Language Server Workspace
@@ -59,11 +43,18 @@ Java: Clean Java Language Server Workspace
 
 Then reload VS Code when prompted.
 
-## How to Run Tests
+## How to Compile and Run Tests
 
-Open a test file, such as:
+Compile everything into `bin`:
 
-- `AssertMethods/HelloWorldTest.java`
-- `MyClass/MyClassTest.java`
+```text
+javac -cp "lib/junit-platform-console-standalone-6.0.3.jar" -d bin $(rg --files src -g '*.java')
+```
 
-Then use the `Run Test` icons shown by VS Code next to the test class or individual test methods.
+Run the full test suite:
+
+```text
+java -jar lib/junit-platform-console-standalone-6.0.3.jar execute --class-path bin --scan-class-path
+```
+
+You can also run individual tests directly from VS Code using the gutter icons.
