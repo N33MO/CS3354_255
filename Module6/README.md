@@ -28,6 +28,12 @@ This is the standard layout used by most Maven and Gradle Java projects, even th
 - `module6.myclass` - basic class testing example
 - `module6.math` - parameterized test example
 - `module6.account` - test lifecycle and setup examples
+- `module6.bank` - bank account testing example
+- `module6.grade` - grade calculation testing example
+
+## Student Notes
+
+For guided notes on reading the JUnit demo examples, see `JUnit6StudentNotes.md`.
 
 ## VS Code Setup
 
