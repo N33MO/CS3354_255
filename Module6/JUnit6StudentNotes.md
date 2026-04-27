@@ -43,6 +43,10 @@ Example: `deposit_shouldIncreaseBalance()`
 - `@Test`
   Marks a method as a test method.
 
+- `@ParameterizedTest`
+  Runs the same test method multiple times with different input values.
+  In `getLetterGrade_shouldReturnExpectedLetterForScore(...)`, each row gives one score and one expected letter grade.
+
 - `@BeforeEach`
   Runs before every test method.
   In `BankAccountTest`, it creates a fresh account before each test so one test does not accidentally affect another test.
@@ -75,7 +79,7 @@ Examples:
 
 - `deposit_shouldIncreaseBalance`
 - `withdraw_shouldDecreaseBalance`
-- `getLetterGrade_shouldReturnCFor70To79Point99`
+- `getLetterGrade_shouldReturnExpectedLetterForScore`
 - `isPassing_shouldReturnTrueForScoreAtOrAbove60`
 
 ### Boundary Cases
@@ -117,6 +121,8 @@ Focus on these methods:
 Notice how `StudentGradeTest` checks return values directly. For example, when the score is `90.0`, the expected result is `"A"`.
 
 Also notice the boundary values. A score of `89.99` is close to an `A`, but it should still return `"B"`.
+
+The `getLetterGrade_shouldReturnExpectedLetterForScore(...)` test is parameterized. Read each `@CsvSource` row as one mini test case: first the score, then the expected letter grade.
 
 The `isPassing()` method is a boolean method. That makes it a natural place to use `assertTrue()` and `assertFalse()`.
 

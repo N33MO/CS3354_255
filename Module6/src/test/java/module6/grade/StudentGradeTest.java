@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 /**
  * JUnit 6 tests for StudentGrade.
@@ -108,68 +110,29 @@ class StudentGradeTest {
         assertFalse(student.isPassing());
     }
 
-    @Test
-    void getLetterGrade_shouldReturnAFor90AndAbove() {
+    @ParameterizedTest
+    @CsvSource({
+        "100.0, A",
+        "95.5, A",
+        "90.0, A",
+        "89.99, B",
+        "80.0, B",
+        "79.99, C",
+        "70.0, C",
+        "69.99, D",
+        "60.0, D",
+        "59.99, F",
+        "0.0, F"
+    })
+    void getLetterGrade_shouldReturnExpectedLetterForScore(double score, String expectedLetterGrade) {
         // Arrange
-        StudentGrade student = new StudentGrade("Jordan", 92.5);
-
-        // Act and Assert
-        assertAll(
-            () -> assertEquals("A", student.getLetterGrade(90.0)),
-            () -> assertEquals("A", student.getLetterGrade(95.5)),
-            () -> assertEquals("A", student.getLetterGrade(100.0))
-        );
-    }
-
-    @Test
-    void getLetterGrade_shouldReturnBFor80To89Point99() {
-        // Arrange
-        StudentGrade student = new StudentGrade("Jordan", 85.0);
-
-        // Act and Assert
-        assertAll(
-            () -> assertEquals("B", student.getLetterGrade(80.0)),
-            () -> assertEquals("B", student.getLetterGrade(89.99))
-        );
-    }
-
-    @Test
-    void getLetterGrade_shouldReturnCFor70To79Point99() {
-        // Arrange
-        StudentGrade student = new StudentGrade("Jordan", 75.0);
-
-        // Act and Assert
-        assertAll(
-            () -> assertEquals("C", student.getLetterGrade(70.0)),
-            () -> assertEquals("C", student.getLetterGrade(79.99))
-        );
-    }
-
-    @Test
-    void getLetterGrade_shouldReturnDFor60To69Point99() {
-        // Arrange
-        StudentGrade student = new StudentGrade("Jordan", 65.0);
-
-        // Act and Assert
-        assertAll(
-            () -> assertEquals("D", student.getLetterGrade(60.0)),
-            () -> assertEquals("D", student.getLetterGrade(69.99))
-        );
-    }
-
-    @Test
-    void getLetterGrade_shouldReturnFForBelow60() {
-        // Arrange
-        StudentGrade student = new StudentGrade("Jordan", 55.0);
+        StudentGrade student = new StudentGrade("Jordan", score);
 
         // Act
-        String grade = student.getLetterGrade(59.99);
+        String actualLetterGrade = student.getLetterGrade();
 
         // Assert
-        assertAll(
-            () -> assertEquals("F", grade),
-            () -> assertTrue(grade.equals("F"))
-        );
+        assertEquals(expectedLetterGrade, actualLetterGrade);
     }
 
     @Test
